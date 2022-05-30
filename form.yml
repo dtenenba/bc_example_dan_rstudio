@@ -1,0 +1,38 @@
+---
+title: "R Shiny app on cluster"
+cluster: "cluster"
+description: |
+  This app will launch a R Shiny app from the path listed. The app will be using CHPC default R.
+attributes:
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 32, on other partition 32 or 40."
+    min: 1
+    max: 40
+  bc_num_hours:
+    label: "Number of hours"
+    value: 1   
+    min: 1
+    max: 336
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, on notchpeak and owner-guest 72 hours, on owner nodes 14 days."
+  bc_account:
+    # label: "Account"
+    # value: "notchpeak-shared-short"
+  bc_queue:
+    label: "Partition"
+    value: ""
+  shiny_app:
+    widget: text_area
+    label: "Shiny app to run"
+    help: "Enter the path to the Shiny app you want to run. App file in this directory has to be named either app.R or server.R."
+    value: |
+        /home/$USER/ondemand/dev/bc_osc_example_shiny/template/app
+form:
+  - shiny_app
+  - num_cores
+  - bc_num_hours
+  - bc_account
+  - bc_queue
+  - bc_email_on_started
